@@ -1,7 +1,9 @@
 package user
 
 import (
+	_ "github.com/go-sql-driver/mysql" //导入mysql驱动
 	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/goner"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
 	"template_module/internal/interface/entity"
@@ -28,6 +30,8 @@ func Test_iUser_Register(t *testing.T) {
 
 		//load all mocked components
 		mock.MockPriest(cemetery, controller)
+
+		_ = goner.XormPriest(cemetery)
 
 		//bury the tested component
 		cemetery.Bury(&iUser{})
