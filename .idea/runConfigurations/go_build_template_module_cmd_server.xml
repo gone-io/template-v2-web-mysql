@@ -3,8 +3,11 @@
     <module name="web" />
     <working_directory value="$PROJECT_DIR$" />
     <kind value="DIRECTORY" />
+    <package value="template_module" />
     <directory value="$PROJECT_DIR$/cmd/server" />
     <filePath value="$PROJECT_DIR$/cmd/server/main.go" />
-    <method v="2" />
+    <method v="2">
+      <option name="GoBeforeRunTask" command="generate ./..." />
+    </method>
   </configuration>
 </component>
