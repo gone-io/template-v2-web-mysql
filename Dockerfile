@@ -7,8 +7,9 @@ ENV GO111MODULE=on \
     GOPROXY=https://goproxy.cn,direct
 
 RUN sed 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' -i /etc/apk/repositories && \
-    apk add git && \
-    go install github.com/gone-io/gonectr@latest && \
+    apk add git \
+
+RUN --mount=type=cache,target=/go,id=go go install github.com/gone-io/gonectr@latest && \
     go install go.uber.org/mock/mockgen@latest
 
 COPY ["go.mod", "go.sum", "Makefile", "./"]
