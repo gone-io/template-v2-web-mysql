@@ -8,6 +8,6 @@ import (
 func main() {
 	gone.
 		Default.
-		LoadPriest(internal.Priest).
+		Loads(internal.Load).
 		Serve()
 }

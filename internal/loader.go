@@ -7,7 +7,7 @@ import (
 )
 
 //go:generate gonectr generate -m=../cmd/server
-func Priest(cemetery gone.Cemetery) error {
-	_ = goner.XormPriest(cemetery)
-	return goner.GinPriest(cemetery)
+func Load(loader gone.Cemetery) error {
+	_ = goner.XormPriest(loader)
+	return goner.GinPriest(loader)
 }
