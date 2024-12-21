@@ -4,7 +4,7 @@ go 1.22.4
 
 require (
 	github.com/go-sql-driver/mysql v1.8.1
-	github.com/gone-io/gone v1.2.3
+	github.com/gone-io/gone latest
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0
