@@ -1,13 +1,12 @@
 package main
 
 import (
-	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/v2"
 	"template_module/internal"
 )
 
 func main() {
 	gone.
-		Default.
 		Loads(internal.Load).
 		Serve()
 }

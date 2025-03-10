@@ -1,13 +1,13 @@
 package user
 
 import (
-	"github.com/gone-io/gone/goner/xorm"
+	"github.com/gone-io/goner/xorm"
 	"template_module/internal/interface/entity"
 	"template_module/internal/interface/service"
 	"template_module/internal/pkg/e"
 	"template_module/internal/pkg/utils"
 
-	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/v2"
 )
 
 type iUser struct {

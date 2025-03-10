@@ -3,7 +3,7 @@ package e
 import (
 	"net/http"
 
-	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/v2"
 )
 
 var (

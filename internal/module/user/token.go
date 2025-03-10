@@ -3,8 +3,8 @@ package user
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/gone-io/gone"
-	"github.com/gone-io/gone/goner/xorm"
+	"github.com/gone-io/gone/v2"
+	"github.com/gone-io/goner/xorm"
 	"template_module/internal/pkg/utils"
 	"time"
 )

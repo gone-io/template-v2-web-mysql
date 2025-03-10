@@ -1,7 +1,8 @@
 package router
 
 import (
-	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/v2"
+	"github.com/gone-io/goner/gin"
 	"template_module/internal/interface/service"
 	"template_module/internal/pkg/utils"
 )
@@ -10,21 +11,20 @@ const IdAuthRouter = "router-auth"
 
 type authRouter struct {
 	gone.Flag
-	gone.RouteGroup
-	root  gone.RouteGroup    `gone:"*"`
+	gin.RouteGroup
+	root  gin.RouteGroup     `gone:"*"`
 	iUser service.IUserLogin `gone:"*"`
 }
 
-func (r *authRouter) GetGonerId() gone.GonerId {
+func (r *authRouter) GonerName() string {
 	return IdAuthRouter
 }
 
-func (r *authRouter) AfterRevive() gone.AfterReviveError {
+func (r *authRouter) Init() {
 	r.RouteGroup = r.root.Group("/api", r.auth)
-	return nil
 }
 
-func (r *authRouter) auth(ctx *gone.Context, in struct {
+func (r *authRouter) auth(ctx *gin.Context, in struct {
 	authorization string `gone:"http,header"`
 }) error {
 	token, err := utils.GetBearerToken(in.authorization)

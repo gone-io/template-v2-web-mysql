@@ -2,10 +2,10 @@ package user
 
 import (
 	_ "github.com/go-sql-driver/mysql" //导入mysql驱动
-	"github.com/gone-io/gone"
-	"github.com/gone-io/gone/goner"
+	"github.com/gone-io/gone/v2"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
+	"template_module/internal"
 	"template_module/internal/interface/entity"
 	"template_module/internal/interface/mock"
 	"testing"
@@ -25,17 +25,17 @@ func Test_iUser_Register(t *testing.T) {
 		})
 		assert.Nil(t, register)
 		assert.Equal(t, err2, err)
-	}, func(cemetery gone.Cemetery) error {
+	}, func(loader gone.Loader) error {
 		controller := gomock.NewController(t)
 
 		//load all mocked components
-		mock.MockPriest(cemetery, controller)
+		mock.MockLoader(loader, controller)
 
-		_ = goner.XormPriest(cemetery)
+		err := loader.Load(&iUser{})
+		if err != nil {
+			return gone.ToError(err)
+		}
 
-		//bury the tested component
-		cemetery.Bury(&iUser{})
-
-		return nil
+		return internal.TestLoader(loader)
 	})
 }

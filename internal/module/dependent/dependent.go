@@ -1,6 +1,6 @@
 package dependent
 
-import "github.com/gone-io/gone"
+import "github.com/gone-io/gone/v2"
 
 type iDependent struct {
 	gone.Flag

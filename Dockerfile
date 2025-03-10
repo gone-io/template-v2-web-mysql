@@ -1,18 +1,20 @@
-FROM golang:1.22-alpine3.19 as builder
-
+FROM golang:1.24-alpine3.20 AS builder
 
 WORKDIR /app
 
+# comment this command if your service do not build in china
 ENV GO111MODULE=on \
     GOPROXY=https://goproxy.cn,direct
 
-RUN sed 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' -i /etc/apk/repositories && \
-    apk add git \
+# comment this command if your service do not build in china
+RUN sed 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' -i /etc/apk/repositories
+
+RUN apk add git
 
 RUN --mount=type=cache,target=/go,id=go go install github.com/gone-io/gonectr@latest && \
     go install go.uber.org/mock/mockgen@latest
 
-COPY ["go.mod", "go.sum", "Makefile", "./"]
+COPY ["go.mod", "go.sum", "./"]
 
 RUN --mount=type=cache,target=/go,id=go go mod download
 
@@ -23,7 +25,9 @@ COPY internal internal
 RUN --mount=type=cache,target=/go,id=go  go generate ./... && \
     go build -ldflags="-w -s" -tags musl -o bin/server ./cmd/server
 
-FROM alpine:3.19
+FROM alpine:3.20
+
+# comment this command if you don't need to change the timezone
 RUN sed 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' -i /etc/apk/repositories && \
     apk update && \
     apk add tzdata && \
@@ -37,5 +41,5 @@ COPY --from=builder /app/bin/server /app/server
 ARG ENVIRONMENT=dev
 ENV ENV=${ENVIRONMENT}
 
-CMD ./server
+CMD ["./server"]
 EXPOSE 8080

@@ -1,18 +1,19 @@
 package utils
 
 import (
-	"github.com/gone-io/gone"
+	"github.com/gone-io/gone/v2"
+	"github.com/gone-io/goner/gin"
 	"strings"
 	"template_module/internal/pkg/e"
 )
 
 const UserIdKey = "user-id"
 
-func SetUserId(ctx *gone.Context, userId int64) {
+func SetUserId(ctx *gin.Context, userId int64) {
 	ctx.Set(UserIdKey, userId)
 }
 
-func GetUserId(ctx *gone.Context) int64 {
+func GetUserId(ctx *gin.Context) int64 {
 	value, exists := ctx.Get(UserIdKey)
 
 	if !exists {

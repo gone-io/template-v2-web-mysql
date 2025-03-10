@@ -1,25 +1,24 @@
 package controller
 
 import (
+	"github.com/gone-io/gone/v2"
+	"github.com/gone-io/goner/gin"
 	"template_module/internal/interface/entity"
 	"template_module/internal/interface/service"
 	"template_module/internal/pkg/utils"
-
-	"github.com/gone-io/gone"
-	"github.com/gone-io/gone/goner/gin"
 )
 
 type userCtr struct {
 	gone.Flag
-	a gone.RouteGroup `gone:"router-auth"`
-	p gone.RouteGroup `gone:"router-pub"`
+	a gin.RouteGroup `gone:"router-auth"`
+	p gin.RouteGroup `gone:"router-pub"`
 
 	iUser       service.IUser      `gone:"*"`
 	iUserLogin  service.IUserLogin `gone:"*"`
 	gone.Logger `gone:"*"`
 }
 
-func (c *userCtr) Mount() gone.GinMountError {
+func (c *userCtr) Mount() gin.GinMountError {
 	c.Infof("mount user controller")
 	c.p.
 		POST("/users/login", func(in struct {
