@@ -1,61 +1,65 @@
-# Gone Web MySQL 模板项目
+<p align="left">
+   English&nbsp ｜&nbsp <a href="README_CN.md">中文</a>
+</p>
 
-这是一个基于 Gone 框架的 Web 应用模板项目，集成了 MySQL 数据库支持，可以作为开发 Web 应用的起点。
+# Gone Web MySQL Template Project
 
-## 项目特点
+This is a web application template project based on the Gone framework, integrated with MySQL database support, which can serve as a starting point for developing web applications.
 
-- 基于 Gone 框架构建，采用依赖注入设计模式
-- 集成 MySQL 数据库支持
-- 提供完整的项目结构和代码组织方式
-- 支持 Docker 部署
-- 包含用户管理示例代码
+## Project Features
 
-## 技术栈
+- Built on the Gone framework using dependency injection design pattern
+- Integrated MySQL database support
+- Provides complete project structure and code organization
+- Supports Docker deployment
+- Includes user management example code
 
-- [Gone](https://github.com/gone-io/gone) - 基于依赖注入的 Go 应用框架
-- [Gin](https://github.com/gin-gonic/gin) - Web 框架
-- [Xorm](https://xorm.io/) - ORM 框架
-- MySQL - 数据库
-- Docker - 容器化部署
+## Tech Stack
 
-## 目录结构
+- [Gone](https://github.com/gone-io/gone) - Go application framework based on dependency injection
+- [Gin](https://github.com/gin-gonic/gin) - Web framework
+- [Xorm](https://xorm.io/) - ORM framework
+- MySQL - Database
+- Docker - Containerized deployment
+
+## Directory Structure
 
 ```
 .
-├── cmd                 # 应用入口
-│   └── server          # 服务器入口
-├── config              # 配置文件
-├── internal            # 内部代码
-│   ├── controller      # 控制器
-│   ├── interface       # 接口定义
-│   ├── module          # 模块实现
-│   ├── pkg             # 工具包
-│   └── router          # 路由定义
-├── scripts             # 脚本文件
-│   └── mysql           # MySQL 初始化脚本
-└── tests               # 测试文件
-    └── api             # API 测试
+├── cmd                 # Application entry
+│   └── server          # Server entry
+├── config              # Configuration files
+├── internal            # Internal code
+│   ├── controller      # Controllers
+│   ├── interface       # Interface definitions
+│   ├── module          # Module implementations
+│   ├── pkg             # Utility packages
+│   └── router          # Route definitions
+├── scripts             # Script files
+│   └── mysql           # MySQL initialization scripts
+└── tests               # Test files
+    └── api             # API tests
 ```
 
-## 快速开始
+## Quick Start
 
-### 前置条件
+### Prerequisites
 
-- Go 1.24 或更高版本
-- MySQL 8.0 或更高版本
-- Docker 和 Docker Compose (可选，用于容器化部署)
+- Go 1.24 or higher
+- MySQL 8.0 or higher
+- Docker and Docker Compose (optional, for containerized deployment)
 
-### 本地开发
+### Local Development
 
-1. 安装依赖
+1. Install dependencies
 
 ```bash
 go mod download
 ```
 
-3. 配置数据库
+3. Configure database
 
-编辑 `config/default.properties` 文件，设置数据库连接信息：
+Edit `config/default.properties` file, set database connection information:
 
 ```properties
 db.host=localhost
@@ -65,55 +69,55 @@ db.username=root
 db.password=123456
 ```
 
-4. 运行项目
+4. Run the project
 
 ```bash
 make run
 ```
 
-服务将在 http://localhost:8080 启动
+The service will start at http://localhost:8080
 
-### Docker 部署
+### Docker Deployment
 
-1. 构建 Docker 镜像
+1. Build Docker image
 
 ```bash
 make build-docker
 ```
 
-2. 启动服务
+2. Start service
 
 ```bash
 docker compose up -d
 ```
 
-服务将在 http://localhost:8080 启动，MySQL 数据库将在 localhost:3306 可用
+The service will start at http://localhost:8080, and MySQL database will be available at localhost:3306
 
-## 配置说明
+## Configuration Guide
 
-项目配置文件位于 `config/default.properties`，主要配置项包括：
+Project configuration file is located at `config/default.properties`, main configuration items include:
 
-- `server.port` - 服务端口，默认为 8080
-- `server.mode` - Gin 服务模式，可选值 debug, test, release，默认为 release
-- `server.health-check` - 健康检查路径，默认为 /api/health-check
-- `db.host` - 数据库主机
-- `db.port` - 数据库端口
-- `db.name` - 数据库名称
-- `db.username` - 数据库用户名
-- `db.password` - 数据库密码
+- `server.port` - Service port, default is 8080
+- `server.mode` - Gin service mode, options are debug, test, release, default is release
+- `server.health-check` - Health check path, default is /api/health-check
+- `db.host` - Database host
+- `db.port` - Database port
+- `db.name` - Database name
+- `db.username` - Database username
+- `db.password` - Database password
 
-## 开发指南
+## Development Guide
 
-### 添加新接口
+### Adding New APIs
 
-1. 在 `internal/interface` 中定义接口
-2. 在 `internal/module` 中实现接口
-3. 在 `internal/controller` 中创建控制器
-4. 在 `internal/router` 中注册路由
+1. Define interface in `internal/interface`
+2. Implement interface in `internal/module`
+3. Create controller in `internal/controller`
+4. Register route in `internal/router`
 
-### 生成 Mock
+### Generating Mocks
 
-项目使用 mockgen 生成 mock 代码：
+The project uses mockgen to generate mock code:
 
 ```bash
 go generate ./...
