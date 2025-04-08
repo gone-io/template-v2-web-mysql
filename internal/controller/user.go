@@ -18,7 +18,7 @@ type userCtr struct {
 	gone.Logger `gone:"*"`
 }
 
-func (c *userCtr) Mount() gin.GinMountError {
+func (c *userCtr) Mount() gin.MountError {
 	c.Infof("mount user controller")
 	c.p.
 		POST("/users/login", func(in struct {
